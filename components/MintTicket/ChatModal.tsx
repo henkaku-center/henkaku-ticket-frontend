@@ -1,6 +1,5 @@
-import { Box, Button, Text } from '@chakra-ui/react'
+import { Box, Text } from '@chakra-ui/react'
 import { FC, useMemo } from 'react'
-import { useInitPush } from '@/hooks/usePushProtocol'
 import { Chat, ENV } from '@pushprotocol/uiweb'
 import { useAccount, useSigner } from 'wagmi'
 import { Signer } from 'ethers'
@@ -13,7 +12,6 @@ type Props = {
 }
 
 const ChatModal: FC<Props> = ({ receiverAddress }) => {
-  const { user, createUser } = useInitPush()
   const { t, lang } = useTranslation('ticket')
   const { data } = useSigner()
   const { address } = useAccount()
@@ -40,26 +38,20 @@ const ChatModal: FC<Props> = ({ receiverAddress }) => {
         <Text fontSize="l" as="b">
           {t('TITLE.CONTACT_ORGANIZERS')}
         </Text>
-        {user ? (
-          <Box mt={2}>
-            <Chat
-              account={address as string}
-              supportAddress={receiverAddress}
-              signer={data as Signer}
-              env={chainName === 'polygon' ? ENV.PROD : ENV.STAGING}
-              modalTitle={t('CHAT')}
-              greetingMsg={t('GREETING_MSG')}
-              theme={{
-                btnColorPrimary: '#319795',
-                bgColorSecondary: '#319795'
-              }}
-            />
-          </Box>
-        ) : (
-          <Button onClick={createUser} width="full" mt={2}>
-            {t('CONNECT_TO_CHAT')}
-          </Button>
-        )}
+        <Box mt={2}>
+          <Chat
+            account={address as string}
+            supportAddress={receiverAddress}
+            signer={data as Signer}
+            env={chainName === 'polygon' ? ENV.PROD : ENV.STAGING}
+            modalTitle={t('CHAT')}
+            greetingMsg={t('GREETING_MSG')}
+            theme={{
+              btnColorPrimary: '#319795',
+              bgColorSecondary: '#319795'
+            }}
+          />
+        </Box>
       </Box>
     </>
   )
