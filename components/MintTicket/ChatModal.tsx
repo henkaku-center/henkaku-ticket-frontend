@@ -49,6 +49,10 @@ const ChatModal: FC<Props> = ({ receiverAddress }) => {
               env={chainName === 'polygon' ? ENV.PROD : ENV.STAGING}
               modalTitle={t('CHAT')}
               greetingMsg={t('GREETING_MSG')}
+              theme={{
+                btnColorPrimary: '#319795',
+                bgColorSecondary: '#319795'
+              }}
             />
           </Box>
         ) : (

@@ -68,9 +68,10 @@ export interface TicketInterface extends utils.Interface {
     "addAdmins(address[])": FunctionFragment;
     "balanceOf(address,uint256)": FunctionFragment;
     "balanceOfBatch(address[],uint256[])": FunctionFragment;
+    "communityToken()": FunctionFragment;
     "deleteAdmin(address)": FunctionFragment;
     "exists(uint256)": FunctionFragment;
-    "henkakuV2()": FunctionFragment;
+    "initialize(string,string,address)": FunctionFragment;
     "isAdmin(address)": FunctionFragment;
     "isApprovedForAll(address,address)": FunctionFragment;
     "mint(uint256)": FunctionFragment;
@@ -84,6 +85,7 @@ export interface TicketInterface extends utils.Interface {
     "safeBatchTransferFrom(address,address,uint256[],uint256[],bytes)": FunctionFragment;
     "safeTransferFrom(address,address,uint256,uint256,bytes)": FunctionFragment;
     "setApprovalForAll(address,bool)": FunctionFragment;
+    "setCommunityToken(address)": FunctionFragment;
     "supportsInterface(bytes4)": FunctionFragment;
     "switchMintable()": FunctionFragment;
     "symbol()": FunctionFragment;
@@ -97,9 +99,10 @@ export interface TicketInterface extends utils.Interface {
       | "addAdmins"
       | "balanceOf"
       | "balanceOfBatch"
+      | "communityToken"
       | "deleteAdmin"
       | "exists"
-      | "henkakuV2"
+      | "initialize"
       | "isAdmin"
       | "isApprovedForAll"
       | "mint"
@@ -113,6 +116,7 @@ export interface TicketInterface extends utils.Interface {
       | "safeBatchTransferFrom"
       | "safeTransferFrom"
       | "setApprovalForAll"
+      | "setCommunityToken"
       | "supportsInterface"
       | "switchMintable"
       | "symbol"
@@ -134,6 +138,10 @@ export interface TicketInterface extends utils.Interface {
     values: [PromiseOrValue<string>[], PromiseOrValue<BigNumberish>[]]
   ): string;
   encodeFunctionData(
+    functionFragment: "communityToken",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
     functionFragment: "deleteAdmin",
     values: [PromiseOrValue<string>]
   ): string;
@@ -141,7 +149,14 @@ export interface TicketInterface extends utils.Interface {
     functionFragment: "exists",
     values: [PromiseOrValue<BigNumberish>]
   ): string;
-  encodeFunctionData(functionFragment: "henkakuV2", values?: undefined): string;
+  encodeFunctionData(
+    functionFragment: "initialize",
+    values: [
+      PromiseOrValue<string>,
+      PromiseOrValue<string>,
+      PromiseOrValue<string>
+    ]
+  ): string;
   encodeFunctionData(
     functionFragment: "isAdmin",
     values: [PromiseOrValue<string>]
@@ -209,6 +224,10 @@ export interface TicketInterface extends utils.Interface {
     values: [PromiseOrValue<string>, PromiseOrValue<boolean>]
   ): string;
   encodeFunctionData(
+    functionFragment: "setCommunityToken",
+    values: [PromiseOrValue<string>]
+  ): string;
+  encodeFunctionData(
     functionFragment: "supportsInterface",
     values: [PromiseOrValue<BytesLike>]
   ): string;
@@ -237,11 +256,15 @@ export interface TicketInterface extends utils.Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(
+    functionFragment: "communityToken",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
     functionFragment: "deleteAdmin",
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "exists", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "henkakuV2", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "initialize", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "isAdmin", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "isApprovedForAll",
@@ -283,6 +306,10 @@ export interface TicketInterface extends utils.Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(
+    functionFragment: "setCommunityToken",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
     functionFragment: "supportsInterface",
     data: BytesLike
   ): Result;
@@ -300,6 +327,7 @@ export interface TicketInterface extends utils.Interface {
 
   events: {
     "ApprovalForAll(address,address,bool)": EventFragment;
+    "Initialized(uint8)": EventFragment;
     "Mint(address,uint256)": EventFragment;
     "RegisterTicket(address,uint64,uint64,uint64,uint256,uint256,string,uint256[],address[])": EventFragment;
     "TransferBatch(address,address,address,uint256[],uint256[])": EventFragment;
@@ -308,6 +336,7 @@ export interface TicketInterface extends utils.Interface {
   };
 
   getEvent(nameOrSignatureOrTopic: "ApprovalForAll"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "Initialized"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "Mint"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "RegisterTicket"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "TransferBatch"): EventFragment;
@@ -326,6 +355,13 @@ export type ApprovalForAllEvent = TypedEvent<
 >;
 
 export type ApprovalForAllEventFilter = TypedEventFilter<ApprovalForAllEvent>;
+
+export interface InitializedEventObject {
+  version: number;
+}
+export type InitializedEvent = TypedEvent<[number], InitializedEventObject>;
+
+export type InitializedEventFilter = TypedEventFilter<InitializedEvent>;
 
 export interface MintEventObject {
   minter: string;
@@ -443,6 +479,8 @@ export interface Ticket extends BaseContract {
       overrides?: CallOverrides
     ): Promise<[BigNumber[]]>;
 
+    communityToken(overrides?: CallOverrides): Promise<[string]>;
+
     deleteAdmin(
       _deleteAdmin: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
@@ -453,7 +491,12 @@ export interface Ticket extends BaseContract {
       overrides?: CallOverrides
     ): Promise<[boolean]>;
 
-    henkakuV2(overrides?: CallOverrides): Promise<[string]>;
+    initialize(
+      _name: PromiseOrValue<string>,
+      _symbol: PromiseOrValue<string>,
+      _communityToken: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<ContractTransaction>;
 
     isAdmin(
       _address: PromiseOrValue<string>,
@@ -529,6 +572,11 @@ export interface Ticket extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
+    setCommunityToken(
+      _communityToken: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<ContractTransaction>;
+
     supportsInterface(
       interfaceId: PromiseOrValue<BytesLike>,
       overrides?: CallOverrides
@@ -573,6 +621,8 @@ export interface Ticket extends BaseContract {
     overrides?: CallOverrides
   ): Promise<BigNumber[]>;
 
+  communityToken(overrides?: CallOverrides): Promise<string>;
+
   deleteAdmin(
     _deleteAdmin: PromiseOrValue<string>,
     overrides?: Overrides & { from?: PromiseOrValue<string> }
@@ -583,7 +633,12 @@ export interface Ticket extends BaseContract {
     overrides?: CallOverrides
   ): Promise<boolean>;
 
-  henkakuV2(overrides?: CallOverrides): Promise<string>;
+  initialize(
+    _name: PromiseOrValue<string>,
+    _symbol: PromiseOrValue<string>,
+    _communityToken: PromiseOrValue<string>,
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
+  ): Promise<ContractTransaction>;
 
   isAdmin(
     _address: PromiseOrValue<string>,
@@ -659,6 +714,11 @@ export interface Ticket extends BaseContract {
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
+  setCommunityToken(
+    _communityToken: PromiseOrValue<string>,
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
+  ): Promise<ContractTransaction>;
+
   supportsInterface(
     interfaceId: PromiseOrValue<BytesLike>,
     overrides?: CallOverrides
@@ -703,6 +763,8 @@ export interface Ticket extends BaseContract {
       overrides?: CallOverrides
     ): Promise<BigNumber[]>;
 
+    communityToken(overrides?: CallOverrides): Promise<string>;
+
     deleteAdmin(
       _deleteAdmin: PromiseOrValue<string>,
       overrides?: CallOverrides
@@ -713,7 +775,12 @@ export interface Ticket extends BaseContract {
       overrides?: CallOverrides
     ): Promise<boolean>;
 
-    henkakuV2(overrides?: CallOverrides): Promise<string>;
+    initialize(
+      _name: PromiseOrValue<string>,
+      _symbol: PromiseOrValue<string>,
+      _communityToken: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<void>;
 
     isAdmin(
       _address: PromiseOrValue<string>,
@@ -789,6 +856,11 @@ export interface Ticket extends BaseContract {
       overrides?: CallOverrides
     ): Promise<void>;
 
+    setCommunityToken(
+      _communityToken: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
     supportsInterface(
       interfaceId: PromiseOrValue<BytesLike>,
       overrides?: CallOverrides
@@ -825,6 +897,9 @@ export interface Ticket extends BaseContract {
       operator?: PromiseOrValue<string> | null,
       approved?: null
     ): ApprovalForAllEventFilter;
+
+    "Initialized(uint8)"(version?: null): InitializedEventFilter;
+    Initialized(version?: null): InitializedEventFilter;
 
     "Mint(address,uint256)"(
       minter?: PromiseOrValue<string> | null,
@@ -913,6 +988,8 @@ export interface Ticket extends BaseContract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
+    communityToken(overrides?: CallOverrides): Promise<BigNumber>;
+
     deleteAdmin(
       _deleteAdmin: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
@@ -923,7 +1000,12 @@ export interface Ticket extends BaseContract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
-    henkakuV2(overrides?: CallOverrides): Promise<BigNumber>;
+    initialize(
+      _name: PromiseOrValue<string>,
+      _symbol: PromiseOrValue<string>,
+      _communityToken: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<BigNumber>;
 
     isAdmin(
       _address: PromiseOrValue<string>,
@@ -997,6 +1079,11 @@ export interface Ticket extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
+    setCommunityToken(
+      _communityToken: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<BigNumber>;
+
     supportsInterface(
       interfaceId: PromiseOrValue<BytesLike>,
       overrides?: CallOverrides
@@ -1042,6 +1129,8 @@ export interface Ticket extends BaseContract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
+    communityToken(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
     deleteAdmin(
       _deleteAdmin: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
@@ -1052,7 +1141,12 @@ export interface Ticket extends BaseContract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    henkakuV2(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    initialize(
+      _name: PromiseOrValue<string>,
+      _symbol: PromiseOrValue<string>,
+      _communityToken: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<PopulatedTransaction>;
 
     isAdmin(
       _address: PromiseOrValue<string>,
@@ -1125,6 +1219,11 @@ export interface Ticket extends BaseContract {
     setApprovalForAll(
       operator: PromiseOrValue<string>,
       approved: PromiseOrValue<boolean>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<PopulatedTransaction>;
+
+    setCommunityToken(
+      _communityToken: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 

@@ -27,7 +27,6 @@ import { useApproval, useChainId } from '@/hooks'
 import { getContractAddress } from '@/utils/contractAddresses'
 import { Approve } from '../Approve'
 import { ethers } from 'ethers'
-import PushChat from '../Push/Chat'
 import ChatModal from './ChatModal'
 
 interface Props {
