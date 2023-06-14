@@ -1,0 +1,75 @@
+{
+  "CONNECT_WALLET_BUTTON": "Connect wallet",
+  "DISCONNECT_WALLET_BUTTON": "Disconnect wallet",
+  "BUTTON_SUBMITTING": "Submitting...",
+  "BUTTON_CANCEL": "Cancel",
+
+  "HENKAKU": "HENKAKU",
+  "TICKET": "Ticket",
+  "HOME_LINK": "Home",
+  "COLLECTION_LINK": "Purchased Tickets",
+  "CREATE_LINK": "Ticket Issue",
+  "TICKET_LINK": "Ticket",
+  "LANG_SWITCHER": "日本語",
+
+  "CREATE_NEW_TICKET": "Issue a new ticket",
+  "NEW_TICKET_REQUIRE_HENKAKUTOKEN": "HENKAKU token is required to create ticket.",
+  "NEW_TICKET_HENKAKUTOKEN_0": "10 HENKAKU (up to 10 copies)",
+  "NEW_TICKET_HENKAKUTOKEN_10": "5 HENKAKU/copy (11 to 100 copies)",
+  "NEW_TICKET_HENKAKUTOKEN_100": "10 HENKAKU/copy (more than 100 copies)",
+  "NEW_TICKET_TITLE_LABEL": "Ticket title",
+  "NEW_TICKET_PICTURE_LABEL": "Picture（up to 3 MB）",
+  "NEW_TICKET_SECRET_MESSAGE_LABEL": "Secret message for ticket holder（up to 500 KB）",
+  "NEW_TICKET_CONDITIONS_SECRET_MESSAGE_LABEL": "You can add conditions for viewing secret messages (requires a ID for an already issued ticket).",
+  "NEW_TICKET_SECRET_LINKED_DECRYPT_TOKEN_IDS_LABEL": "Enter the ID(s) of the ticket(s) they need to see the secret message(s)",
+  "ADD_LINKED_DECRYPT_TOKEN_IDS_BUTTON_LABEL": "Add ID(s)",
+  "NEW_TICKET_CREATOR_NAME": "Creator name",
+  "NEW_TICKET_DESCRIPTION": "NFT description",
+  "NEW_TICKET_MAX_SUPPLY": "Max supply",
+  "NEW_TICKET_PRICE": "Ticket price",
+  "NEW_TICKET_POOL_WALLET": "Wallet Address for receiving ticket fee, and percentage",
+  "NEW_TICKET_INCORRECT_TOTAL_PERCENTAGE": "Change the value so that the total is 100%",
+  "NEW_TICKET_TIMESTAMP": "Sales period (JST)",
+  "NEW_TICKET_TAKING_TIME": "This might take a while",
+  "NEW_TICKET_SECRET_PROMPT": "Would you like to add a secret message for the people who will receive your ticket?",
+  "REQUIRED_INPUT": "Required",
+  "UPLOAD_SUCCESS": "Successfully uploaded",
+  "BUTTON_CREATE": "Issue",
+  "BUTTON_APPROVE": "Approve the Ticket NFT contract to make payment operations for the HENKAKU token",
+  "ERC20APPROVED": {
+    "APPROVED": "You have already approved HENKAKU payments to this contract.",
+    "UNAPPROVED": "You have not yet approved HENKAKU payments to this contract."
+  },
+  "IMAGE_PREVIEW_ALT": "Ticket NFT preview",
+
+  "STATUS_BUTTON": "Status",
+  "STATUS_TITLE": "Status",
+
+  "REGISTERD_TICKET_LIST": "Registered ticket list",
+  "EMPTY_TICKET_LIST": "No relevant ticket found",
+  "EXISTS_SAME_TOKENID": "Duplicate Ticket ID set for secret message",
+
+  "CLAIM": {
+    "TOAST": {
+      "SUBMITTED": "Submitted",
+      "ERROR": "Error",
+      "SUCCESS": "Ticket was successfully received.",
+      "RETRIEVE_TICKETS_FAILED": "Failed to retrieve ticket list.",
+      "TX_FAILED": "Transaction failed.",
+      "DEFAULT_ERROR": "Unknown Server Error",
+      "NOT_EXISTS_SECRET_MESSAGE_TOKENID": "Some Ticket IDs do not exist."
+    }
+  },
+
+  "GET_TICKET": "Purchase",
+
+  "COPYRIGHT_LINE": "© 2023 henkaku.org. All rights reserved.",
+
+  "TOP_MINT_START_READY": "🎊You can now get Ticket NFT🎊",
+  "TOP_UNTIL_START": "Until Ticket NFT is available",
+
+  "THANK_YOU_FOR_MINT": "Thank you for receiving Ticket.",
+  "GREET_THIS_YEAR": "We're looking forward to working with you!",
+
+  "WITHOUT_GAS_FEE": "Without Gas Fee"
+}

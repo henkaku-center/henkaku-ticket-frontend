@@ -1,0 +1,75 @@
+{
+  "CONNECT_WALLET_BUTTON": "ウォレットを接続",
+  "DISCONNECT_WALLET_BUTTON": "ウォレットの接続解除",
+  "BUTTON_SUBMITTING": "送信中...",
+  "BUTTON_CANCEL": "キャンセル",
+
+  "HENKAKU": "HENKAKU",
+  "TICKET": "チケット",
+  "HOME_LINK": "ホーム",
+  "COLLECTION_LINK": "購入したチケット",
+  "CREATE_LINK": "チケット発行",
+  "TICKET_LINK": "チケット一覧",
+  "LANG_SWITCHER": "English",
+
+  "CREATE_NEW_TICKET": "チケット発行",
+  "NEW_TICKET_REQUIRE_HENKAKUTOKEN": "チケットの発行にはトークンを持っていることが条件となります。",
+  "NEW_TICKET_HENKAKUTOKEN_0": "10枚までは10固定",
+  "NEW_TICKET_HENKAKUTOKEN_10": "10~100枚までは5/1枚",
+  "NEW_TICKET_HENKAKUTOKEN_100": "100枚以降は10/1枚",
+  "NEW_TICKET_TITLE_LABEL": "チケット名",
+  "NEW_TICKET_PICTURE_LABEL": "画像（3MBまで）",
+  "NEW_TICKET_SECRET_MESSAGE_LABEL": "チケットを入手した人だけが見れるシークレットメッセージです（500KBまで）",
+  "NEW_TICKET_CONDITIONS_SECRET_MESSAGE_LABEL": "シークレットメッセージを見るための条件を追加できます（すでに発行されているチケットのIDが必要です）",
+  "NEW_TICKET_SECRET_LINKED_DECRYPT_TOKEN_IDS_LABEL": "シークレットメッセージを見るために必要なチケットのIDを入力してください（複数可）",
+  "ADD_LINKED_DECRYPT_TOKEN_IDS_BUTTON_LABEL": "チケットIDの追加",
+  "NEW_TICKET_DESCRIPTION": "チケットの説明",
+  "NEW_TICKET_CREATOR_NAME": "作成者名",
+  "NEW_TICKET_MAX_SUPPLY": "最大発行枚数",
+  "NEW_TICKET_PRICE": "チケットの価格",
+  "NEW_TICKET_POOL_WALLET": "チケット代の受け取りウォレットアドレスとその配分",
+  "NEW_TICKET_INCORRECT_TOTAL_PERCENTAGE": "合計が100%になるように値を変更してください",
+  "NEW_TICKET_TIMESTAMP": "チケット販売期間（日本時間）",
+  "NEW_TICKET_TAKING_TIME": "時間がかかることがあります",
+  "NEW_TICKET_SECRET_PROMPT": "チケットを受け取ってくれた人だけが見ることのできる秘密のメッセージを送ってみませんか？",
+  "REQUIRED_INPUT": "必須項目です。",
+  "UPLOAD_SUCCESS": "アップロードが完了しました",
+  "BUTTON_CREATE": "発行する",
+  "BUTTON_APPROVE": "チケットNFTコントラクトがトークンの支払い操作をすることを承認",
+  "ERC20APPROVED": {
+    "APPROVED": "チケットコントラクトに支払いの許可付与済み。",
+    "UNAPPROVED": "承認されていません。支払いの許可を与えてください。"
+  },
+  "IMAGE_PREVIEW_ALT": "チケット NFTのプレビュー",
+
+  "STATUS_BUTTON": "ステータス確認",
+  "STATUS_TITLE": "ステータス",
+
+  "REGISTERD_TICKET_LIST": "チケット一覧",
+  "EMPTY_TICKET_LIST": "該当するチケットが見つかりませんでした",
+  "EXISTS_SAME_TOKENID": "シークレットメッセージ用に設定したチケットIDが重複しています",
+
+  "CLAIM": {
+    "TOAST": {
+      "SUBMITTED": "Submitted",
+      "ERROR": "Error",
+      "SUCCESS": "チケットを受け取りました。",
+      "RETRIEVE_TICKETS_FAILED": "チケット一覧の取得に失敗しました。",
+      "TX_FAILED": "トランザクションが失敗しました。",
+      "DEFAULT_ERROR": "不明なサーバーエラー",
+      "NOT_EXISTS_SECRET_MESSAGE_TOKENID": "シークレットメッセージ用に設定したチケットIDの中で存在しないものがあります"
+    }
+  },
+
+  "GET_TICKET": "購入する",
+
+  "COPYRIGHT_LINE": "© 2023 henkaku.org. All rights reserved.",
+
+  "TOP_MINT_START_READY": "🎊チケットNFTを受け取れるようになりました🎊",
+  "TOP_UNTIL_START": "チケットNFTを受け取れるまで",
+
+  "THANK_YOU_FOR_MINT": "受け取っていただいてありがとうございます",
+  "GREET_THIS_YEAR": "本年もどうぞよろしくお願いいたします。",
+
+  "WITHOUT_GAS_FEE": "ガス代は不要です"
+}

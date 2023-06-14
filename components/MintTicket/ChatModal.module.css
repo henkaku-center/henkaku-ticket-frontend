@@ -1,0 +1,48 @@
+.chatWrapper {
+  height: 60px;
+}
+.chatWrapper [class^='chat__Container'] {
+  display: block;
+  position: static !important;
+  margin-right: 0 !important;
+  margin-bottom: 0 !important;
+  width: 100% !important;
+}
+
+.chatWrapper [class^='chat__Container'] [class^='chat__Button'] {
+  display: flex;
+  background-color: var(--chakra-colors-teal-500);
+  width: 100%;
+  justify-content: center;
+  border-radius: 8px;
+  padding-block: 11px 8px;
+  transition: background-color 0.2s;
+}
+.chatWrapper [class^='chat__Container'] [class^='chat__Button']:hover {
+  background-color: var(--chakra-colors-teal-600);
+}
+.chatWrapper [class^='chat__Container'] button:after {
+  content: 'チャットを開始';
+  display: inline;
+  margin-left: 10px;
+  font-weight: bold;
+  color: white;
+}
+
+.chatWrapper.isEN [class^='chat__Container'] button:after {
+  content: 'Start chat ';
+}
+
+.chatWrapper [class^='chat__Container'] [class^='Modal__Container'] {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  margin: 0 3rem 2rem 0;
+}
+
+@media screen and (max-width: 420px) {
+  .chatWrapper [class^='chat__Container'] [class^='Modal__Container'] {
+    margin: 0 auto;
+    left: 0;
+  }
+}
