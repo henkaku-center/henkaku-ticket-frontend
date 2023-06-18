@@ -28,6 +28,7 @@ import { getContractAddress } from '@/utils/contractAddresses'
 import { Approve } from '../Approve'
 import { ethers } from 'ethers'
 import ChatModal from './ChatModal'
+import fromExponential from 'from-exponential'
 
 interface Props {
   id: number
@@ -202,7 +203,9 @@ const MintTicket: React.FC<Props> = ({ id, item, imageOnly, ...props }) => {
                       </Text>
                       <Text textAlign="right" fontSize="2xl" fontWeight="bold">
                         <>
-                          {ethers.utils.formatEther(item.price.toString())}
+                          {ethers.utils.formatEther(
+                            fromExponential(item.price.toString())
+                          )}
                           HENKAKU
                         </>
                       </Text>
@@ -221,7 +224,9 @@ const MintTicket: React.FC<Props> = ({ id, item, imageOnly, ...props }) => {
                       </Text>
                       <Text textAlign="right" fontSize="2xl" fontWeight="bold">
                         <>
-                          {ethers.utils.formatEther(item.price.toString())}
+                          {ethers.utils.formatEther(
+                            fromExponential(item.price.toString())
+                          )}
                           HENKAKU
                         </>
                       </Text>
