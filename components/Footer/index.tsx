@@ -43,7 +43,7 @@ const SocialButton: React.FC<SocialButtonProps> = ({
 const Footer: React.FC = () => {
   const { t } = useTranslation('common')
   return (
-    <Box p={5} bottom={0} position="relative">
+    <Box p={5} bottom={0} position="relative" zIndex={-1}>
       <Container
         as={Stack}
         maxW={'6xl'}
@@ -53,7 +53,7 @@ const Footer: React.FC = () => {
         justify={{ base: 'center', md: 'space-between' }}
         align={{ base: 'center', md: 'center' }}
       >
-        {/* <Text>{t('COPYRIGHT_LINE')}</Text>
+        <Text>{t('COPYRIGHT_LINE')}</Text>
         <Stack direction={'row'} spacing={6}>
           <SocialButton
             label={'Instagram'}
@@ -75,7 +75,7 @@ const Footer: React.FC = () => {
             <Text mr={1}>Contract</Text>
             <Icon as={FaGithubAlt} />
           </SocialButton>
-        </Stack> */}
+        </Stack>
       </Container>
     </Box>
   )
