@@ -22,5 +22,6 @@
   "UNTIL_START": "Until obtainable",
   "CHAT": "Chat window",
   "GREETING_MSG": "Welcome!",
-  "CONNECT_TO_CHAT": "Connect to chat"
+  "CONNECT_TO_CHAT": "Connect to chat",
+  "CONTACT_ORGANIZERS_NOTICE": "*Messages may not be sent due to instability in the integration system. If this is the case, please reload the page and try several times. We apologize for any inconvenience."
 }

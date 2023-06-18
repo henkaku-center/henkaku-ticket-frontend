@@ -20,5 +20,6 @@
   "UNTIL_START": "受け取り可能になるまで",
   "CHAT": "　チャット",
   "GREETING_MSG": "ようこそ！",
-  "CONNECT_TO_CHAT": "チャットへ接続"
+  "CONNECT_TO_CHAT": "チャットへ接続",
+  "CONTACT_ORGANIZERS_NOTICE": "*連携システムが不安定のためメッセージが送信されない場合があります。その場合、ページをリロードして何度か試していただけますでしょうか。ご不便おかけします。"
 }

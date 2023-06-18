@@ -38,6 +38,7 @@ const ChatModal: FC<Props> = ({ receiverAddress }) => {
         <Text fontSize="l" as="b">
           {t('TITLE.CONTACT_ORGANIZERS')}
         </Text>
+        <Text fontSize="xs">{t('CONTACT_ORGANIZERS_NOTICE')}</Text>
         <Box mt={2}>
           <Chat
             account={address as string}
