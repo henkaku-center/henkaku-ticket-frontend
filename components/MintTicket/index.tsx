@@ -9,7 +9,7 @@ import {
   Flex,
   Badge
 } from '@chakra-ui/react'
-import { useState, useEffect, useCallback, useMemo } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { NFTImage } from '@/components/NFTImage'
 import { useAccount } from 'wagmi'
 import useTranslation from 'next-translate/useTranslation'
@@ -29,6 +29,7 @@ import { Approve } from '../Approve'
 import { ethers } from 'ethers'
 import ChatModal from './ChatModal'
 import fromExponential from 'from-exponential'
+import { checkSaleStatus } from '@/utils/checkSaleStatus'
 
 interface Props {
   id: number
@@ -96,16 +97,12 @@ const MintTicket: React.FC<Props> = ({ id, item, imageOnly, ...props }) => {
         : '',
     [item]
   )
-  const isSale = useCallback(() => {
-    const now = Date.now()
-    if (now < (item.open_blockTimestamp as number) * 1000) return 0
-    if (now > (item.close_blockTimestamp as number) * 1000) return 2
-    return 1
-  }, [item])
+
+  const saleStatus = useMemo(() => checkSaleStatus(item), [item])
 
   const blockTimeStamp = useMemo(() => {
     return {
-      salesStatus: isSale(),
+      salesStatus: saleStatus,
       openText: dayjs((item.open_blockTimestamp as number) * 1000).format(
         'YYYY/MM/DD'
       ),
@@ -113,7 +110,7 @@ const MintTicket: React.FC<Props> = ({ id, item, imageOnly, ...props }) => {
         'YYYY/MM/DD'
       )
     }
-  }, [isSale, item.close_blockTimestamp, item.open_blockTimestamp])
+  }, [saleStatus, item.close_blockTimestamp, item.open_blockTimestamp])
 
   const { address } = useAccount()
 

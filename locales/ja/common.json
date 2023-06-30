@@ -47,6 +47,9 @@
 
   "REGISTERD_TICKET_LIST": "チケット一覧",
   "EMPTY_TICKET_LIST": "該当するチケットが見つかりませんでした",
+  "IN_STORE_NOW": "販売中",
+  "BEFORE_SALE": "販売前",
+  "END_OF_SALE": "販売終了",
   "EXISTS_SAME_TOKENID": "シークレットメッセージ用に設定したチケットIDが重複しています",
 
   "CLAIM": {
