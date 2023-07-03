@@ -47,6 +47,9 @@
 
   "REGISTERD_TICKET_LIST": "Registered ticket list",
   "EMPTY_TICKET_LIST": "No relevant ticket found",
+  "ON_SALE": "On Sale",
+  "BEFORE_SALE": "Not started yet",
+  "END_OF_SALE": "Closed",
   "EXISTS_SAME_TOKENID": "Duplicate Ticket ID set for secret message",
 
   "CLAIM": {

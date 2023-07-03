@@ -53,11 +53,13 @@ const Header: FC<Props> = ({ isExternal = false }) => {
           {!isExternal ? (
             <NextLink passHref href="/" locale={router.locale}>
               <Link href="/">
-                <Heading size={{ base: 'xs', sm: 'md' }}>web3ticket</Heading>
+                <Heading size={{ base: 'xs', sm: 'md' }}>
+                  HENKAKU ticket
+                </Heading>
               </Link>
             </NextLink>
           ) : (
-            <Heading size="md">web3ticket</Heading>
+            <Heading size="md">HENKAKU ticket</Heading>
           )}
         </Box>
         <Spacer />
