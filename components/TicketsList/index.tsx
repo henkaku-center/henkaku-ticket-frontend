@@ -45,7 +45,7 @@ const TicketsList: React.FC<TicketsListProps> = ({ items, type }) => {
   return (
     <Tabs colorScheme="teal">
       <TabList>
-        <Tab minWidth="34%">{t('IN_STORE_NOW')}</Tab>
+        <Tab minWidth="34%">{t('ON_SALE')}</Tab>
         <Tab minWidth="33%">{t('BEFORE_SALE')}</Tab>
         <Tab minWidth="33%">{t('END_OF_SALE')}</Tab>
       </TabList>
