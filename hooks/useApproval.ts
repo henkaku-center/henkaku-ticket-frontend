@@ -70,7 +70,7 @@ const useApproval = (
   }, [data])
 
   const approved = useMemo(() => {
-    if (allowanceValue < (comparedValue || 1000)) {
+    if (allowanceValue < (comparedValue || 1)) {
       return false
     }
     return true
