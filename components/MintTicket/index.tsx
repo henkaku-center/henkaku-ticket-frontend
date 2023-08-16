@@ -114,6 +114,12 @@ const MintTicket: React.FC<Props> = ({ id, item, imageOnly, ...props }) => {
 
   const { address } = useAccount()
 
+  const ticketPrice = useMemo(() => {
+    return Number(
+      ethers.utils.formatEther(fromExponential(item.price.toString()))
+    )
+  }, [item])
+
   const { chainId } = useChainId()
   const henkakuV2 = getContractAddress({
     name: 'henkakuErc20',
@@ -123,7 +129,7 @@ const MintTicket: React.FC<Props> = ({ id, item, imageOnly, ...props }) => {
     name: 'ticket',
     chainId: chainId
   }) as `0x${string}`
-  const { approved } = useApproval(henkakuV2, ticket, address)
+  const { approved } = useApproval(henkakuV2, ticket, address, ticketPrice)
 
   return (
     <>
@@ -200,9 +206,7 @@ const MintTicket: React.FC<Props> = ({ id, item, imageOnly, ...props }) => {
                       </Text>
                       <Text textAlign="right" fontSize="2xl" fontWeight="bold">
                         <>
-                          {ethers.utils.formatEther(
-                            fromExponential(item.price.toString())
-                          )}
+                          {ticketPrice}
                           HENKAKU
                         </>
                       </Text>
