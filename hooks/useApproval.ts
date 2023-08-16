@@ -59,7 +59,8 @@ const useApproval = (
     args: [
       (address as `0x${string}`) || ethers.constants.AddressZero,
       spenderAddress as `0x${string}`
-    ]
+    ],
+    watch: true
   })
 
   const allowanceValue = useMemo(() => {
