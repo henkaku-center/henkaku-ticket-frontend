@@ -1,5 +1,7 @@
 import { BigNumber, ethers } from 'ethers'
-import { useState } from 'react'
+import { parseEther } from 'ethers/lib/utils.js'
+import fromExponential from 'from-exponential'
+import { useMemo, useState } from 'react'
 import {
   erc20ABI,
   useContractRead,
@@ -20,7 +22,7 @@ const useApprove = (erc20: string, spender: string) => {
     address: erc20,
     abi: erc20ABI,
     functionName: 'approve',
-    args: [spender as `0x${string}`, ethers.constants.MaxUint256],
+    args: [spender as `0x${string}`, parseEther('10000')],
     overrides: {
       gasLimit: BigNumber.from(450000)
     }
@@ -47,42 +49,31 @@ const useApprove = (erc20: string, spender: string) => {
 const useApproval = (
   erc20: string,
   spenderAddress: string,
-  address: string | undefined
+  address: string | undefined,
+  comparedValue?: number
 ) => {
-  const [approved, setApprove] = useState<boolean>()
-  const [allowanceValue, setAllowanceValue] = useState<BigNumber>()
-
-  useContractRead({
+  const { data } = useContractRead({
     address: erc20,
     abi: erc20ABI,
     functionName: 'allowance',
     args: [
       (address as `0x${string}`) || ethers.constants.AddressZero,
       spenderAddress as `0x${string}`
-    ],
-    onSuccess(data) {
-      setApprove(data?.gt(1000) ? true : false)
-    }
+    ]
   })
 
-  try {
-    useContractEvent({
-      address: erc20,
-      abi: erc20ABI,
-      eventName: 'Approval',
-      listener(owner, eventAddress, value) {
-        if (owner == address && eventAddress == spenderAddress) {
-          setApprove(value?.gt(1000) ? true : false)
-          setAllowanceValue(value)
-        }
-      }
-    })
-  } catch (e: any) {
-    console.error(e) // with different chain it occurs
-    if (e?.code != ethers.errors.INVALID_ARGUMENT) {
-      throw e
+  const allowanceValue = useMemo(() => {
+    return Number(
+      ethers.utils.formatEther(fromExponential(data?.toString() || 0))
+    )
+  }, [data])
+
+  const approved = useMemo(() => {
+    if (allowanceValue < (comparedValue || 1000)) {
+      return false
     }
-  }
+    return true
+  }, [allowanceValue, comparedValue])
 
   return {
     approved,

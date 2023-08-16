@@ -35,7 +35,7 @@ const StatusMenu: React.FC<Props> = ({ children }) => {
     chainId: chainId
   }) as `0x${string}`
   const { address } = useAccount()
-  const { approved } = useApproval(henkakuV2, ticket, address)
+  const { approved, allowanceValue } = useApproval(henkakuV2, ticket, address)
 
   return (
     <Popover>
@@ -55,7 +55,10 @@ const StatusMenu: React.FC<Props> = ({ children }) => {
           <Balance />
           {approved && (
             <Box mt={3} mb={3}>
-              <Text>{t('ERC20APPROVED.APPROVED')}</Text>
+              <Text>
+                {t('ERC20APPROVED.APPROVED')}（{allowanceValue}
+                HENKAKU）
+              </Text>
             </Box>
           )}
           {!approved && (
